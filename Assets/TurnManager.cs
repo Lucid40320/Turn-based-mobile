@@ -19,10 +19,17 @@ public class TurnManager : MonoBehaviour
     }
 
     Me = this;
+
+    foreach (TurnBasedEntity entity in FindObjectsOfType<TurnBasedEntity>())
+    {
+      RegisterTileBasedEntity(entity);
+    }
   }
 
   public static void RegisterTileBasedEntity(TurnBasedEntity entity)
   {
+    if (Me == null) return;
+
     if (Me._turnBasedEntities.Contains(entity)) return;
 
     Me._turnBasedEntities.Add(entity);
